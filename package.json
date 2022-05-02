@@ -34,7 +34,7 @@
         "typecheck": "tsc --noEmit",
         "check-all": "yarn typecheck && yarn lint && yarn test",
         "predeploy": "yarn build",
-        "deploy": "echo 'words.nachotoast.com' > ./build/CNAME && gh-pages -d build"
+        "deploy": "gh-pages -d build"
     },
     "browserslist": {
         "production": [
