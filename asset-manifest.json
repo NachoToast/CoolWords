@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/coolwords/static/css/main.073c9b0a.css",
-    "main.js": "/coolwords/static/js/main.8f5bd7b6.js",
-    "static/media/logo.svg": "/coolwords/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/coolwords/index.html",
-    "main.073c9b0a.css.map": "/coolwords/static/css/main.073c9b0a.css.map",
-    "main.8f5bd7b6.js.map": "/coolwords/static/js/main.8f5bd7b6.js.map"
+    "main.css": "/CoolWords/static/css/main.073c9b0a.css",
+    "main.js": "/CoolWords/static/js/main.9f335578.js",
+    "static/media/logo.svg": "/CoolWords/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/CoolWords/index.html",
+    "main.073c9b0a.css.map": "/CoolWords/static/css/main.073c9b0a.css.map",
+    "main.9f335578.js.map": "/CoolWords/static/js/main.9f335578.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.8f5bd7b6.js"
+    "static/js/main.9f335578.js"
   ]
 }
