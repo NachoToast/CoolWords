@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.073c9b0a.css",
-    "main.js": "/static/js/main.ad73156e.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/index.html",
-    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
-    "main.ad73156e.js.map": "/static/js/main.ad73156e.js.map"
+    "main.css": "/coolwords/static/css/main.073c9b0a.css",
+    "main.js": "/coolwords/static/js/main.8f5bd7b6.js",
+    "static/media/logo.svg": "/coolwords/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/coolwords/index.html",
+    "main.073c9b0a.css.map": "/coolwords/static/css/main.073c9b0a.css.map",
+    "main.8f5bd7b6.js.map": "/coolwords/static/js/main.8f5bd7b6.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.ad73156e.js"
+    "static/js/main.8f5bd7b6.js"
   ]
 }
