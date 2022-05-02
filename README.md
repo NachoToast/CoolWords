@@ -9,10 +9,13 @@ Roadmap:
 -   [x] Word sets (A-M)
 -   [ ] Word sets (N-Z)
 -   [ ] Gamemodes:
-    -   [ ] Select difficulty only
-    -   [ ] 'Streak' mode, stops once you get one wrong
+    -   [x] Select difficulty only
+    -   [x] 'Streak' mode, stops once you get one wrong
     -   [ ] Timed mode, auto-fails if you take too long
     -   [ ] Practice mode, view all words, no score, etc...
     -   [ ] Reverse mode, guess the word from the definition
     -   [ ] Spelling mode, listen to the word and then spell it
     -   [ ] Synonym mode, give a single-word synonym
+-   [ ] Settings
+    -   [ ] Toggle pool size visibility
+    -   [ ] Toggle best score visibility (don't show in tooltip for mobile users)
