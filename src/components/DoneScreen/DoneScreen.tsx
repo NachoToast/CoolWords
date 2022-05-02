@@ -78,7 +78,15 @@ const DoneScreen = () => {
     }, [percentRight]);
 
     const handleLeave = useCallback(() => {
-        dispatch(finishGame());
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        dispatch(finishGame(true));
+    }, [dispatch]);
+
+    const handleRetry = useCallback(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        dispatch(finishGame(false));
     }, [dispatch]);
 
     useEffect(() => {
@@ -102,6 +110,14 @@ const DoneScreen = () => {
             <Typography>
                 You knew <span style={{ color: percentColor }}>{percentRight}%</span> of the words.
             </Typography>
+            <Box>
+                <Typography textAlign="center" color={gameMode?.nameColor || undefined}>
+                    {gameMode?.name}
+                </Typography>
+                <Typography textAlign="center" color="gray">
+                    {gameMode?.description || 'eieoioio'}
+                </Typography>
+            </Box>
             {isNewBest && (
                 <Fade in>
                     <Box>
@@ -119,9 +135,14 @@ const DoneScreen = () => {
                     </Box>
                 </Fade>
             )}
-            <Button variant="outlined" size="large" onClick={handleLeave}>
-                Home
-            </Button>
+            <Stack direction="row" spacing={1} justifyContent="space-evenly">
+                <Button variant="outlined" size="large" color="primary" onClick={handleLeave}>
+                    Home
+                </Button>
+                <Button variant="outlined" size="large" color="secondary" onClick={handleRetry}>
+                    Retry
+                </Button>
+            </Stack>
         </Stack>
     );
 };

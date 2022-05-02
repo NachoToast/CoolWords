@@ -10,8 +10,7 @@ export interface BestScore {
 export interface GameHistory {
     [GameModeNames.Streak]: Record<DifficultyRating | 'random', BestScore | undefined>;
     [GameModeNames.Letters]: Record<string, BestScore | undefined>;
-    [GameModeNames.Random]: BestScore | undefined;
-    [GameModeNames.Difficulty]: Record<DifficultyRating | 'random', BestScore | undefined>;
+    [GameModeNames.Fixed10]: Record<DifficultyRating | 'random', BestScore | undefined>;
 }
 
 /** A function that gets the best score for a given game mode. */

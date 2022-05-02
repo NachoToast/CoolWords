@@ -3,8 +3,7 @@ import Word from './Word';
 export enum GameModeNames {
     Streak,
     Letters,
-    Random,
-    Difficulty,
+    Fixed10,
 }
 
 interface GameModeBase {

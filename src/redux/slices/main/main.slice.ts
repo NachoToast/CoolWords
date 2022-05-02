@@ -30,8 +30,7 @@ export const initialState: State = {
             [DifficultyRating.VeryHard]: undefined,
         },
         [GameModeNames.Letters]: {},
-        [GameModeNames.Random]: undefined,
-        [GameModeNames.Difficulty]: {
+        [GameModeNames.Fixed10]: {
             random: undefined,
             [DifficultyRating.VeryEasy]: undefined,
             [DifficultyRating.Easy]: undefined,
@@ -62,16 +61,17 @@ const mainSlice = createSlice({
             state.questionPool = newPool;
             state.gameMode = newGameMode;
         },
+        clearGameMode(state) {
+            state.gameMode = null;
+        },
         setQuestionNumber(state, action: { payload: number }) {
             state.questionNumber = action.payload;
         },
         incrementCurrentScore(state) {
             state.currentScore++;
         },
-        finishGame(state) {
+        clearCurrentScore(state) {
             state.currentScore = 0;
-            state.questionNumber = 0;
-            state.gameMode = null;
         },
         setGameHistory(state, action: { payload: GameHistory }) {
             state.gameHistory = action.payload;
@@ -80,7 +80,14 @@ const mainSlice = createSlice({
     },
 });
 
-export const { setGameMode, setQuestionNumber, incrementCurrentScore, finishGame, setGameHistory } = mainSlice.actions;
+export const {
+    setGameMode,
+    clearGameMode,
+    setQuestionNumber,
+    incrementCurrentScore,
+    clearCurrentScore,
+    setGameHistory,
+} = mainSlice.actions;
 
 export const getGameMode = (state: StoreState) => state.main.gameMode;
 
@@ -100,6 +107,21 @@ export const loadGameHistory = createAsyncThunk('main/loadGameHistory', (_, { di
         }
     } catch (error) {
         localStorage.removeItem('words_game_history');
+    }
+});
+
+/** If `true`, will reset the game mode (causing a return to the main menu). */
+export const finishGame = createAsyncThunk('main/finishGame', (resetGameMode: boolean, { dispatch, getState }) => {
+    const state = getState() as StoreState;
+
+    dispatch(clearCurrentScore());
+    dispatch(setQuestionNumber(0));
+    if (resetGameMode) dispatch(clearGameMode());
+    else {
+        const gameMode = getGameMode(state);
+        if (gameMode !== null) {
+            dispatch(setGameMode(gameMode));
+        }
     }
 });
 
