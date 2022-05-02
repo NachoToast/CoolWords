@@ -50,7 +50,7 @@ const mainSlice = createSlice({
             const newGameMode = action.payload;
 
             let newPool = [...(newGameMode.pool || allWords)];
-            if (!newGameMode.noShuffle) newPool = wordShuffle(newGameMode.pool || allWords);
+            if (!newGameMode.noShuffle) newPool = wordShuffle(newPool);
             if (newGameMode.additionalPoolOptions?.amount) {
                 newPool.splice(newGameMode.additionalPoolOptions.amount);
             }
