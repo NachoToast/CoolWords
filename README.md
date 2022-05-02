@@ -18,3 +18,8 @@ Roadmap:
 -   [ ] Settings
     -   [ ] Toggle pool size visibility
     -   [ ] Toggle best score visibility (don't show in tooltip for mobile users)
+-   [ ] Display
+    -   [ ] GitHub link and other stuff on main page
+    -   [ ] Show work library size somewhere
+    -   [ ] Icons for main modes, e.g. fire for streak, alphabet for letters, etc...
+    -   [ ] Trophy (or stars?) for categories you've 100%'d
