@@ -13,3 +13,6 @@ Roadmap:
     -   [ ] 'Streak' mode, stops once you get one wrong
     -   [ ] Timed mode, auto-fails if you take too long
     -   [ ] Practice mode, view all words, no score, etc...
+    -   [ ] Reverse mode, guess the word from the definition
+    -   [ ] Spelling mode, listen to the word and then spell it
+    -   [ ] Synonym mode, give a single-word synonym
