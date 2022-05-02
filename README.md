@@ -23,3 +23,4 @@ Roadmap:
     -   [ ] Show work library size somewhere
     -   [ ] Icons for main modes, e.g. fire for streak, alphabet for letters, etc...
     -   [ ] Trophy (or stars?) for categories you've 100%'d
+    -   [ ] Meta tag stuff
