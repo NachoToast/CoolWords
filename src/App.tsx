@@ -1,19 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import Home from './components/Home';
+import { Container } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { getInGame, loadBestScore } from './redux/slices/main';
+import Game from './components/Game';
 
 function App() {
+    const dispatch = useDispatch();
+    const inGame = useSelector(getInGame);
+
+    useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        dispatch(loadBestScore());
+    }, [dispatch]);
+
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
+            <Container maxWidth="lg">{inGame ? <Game /> : <Home />}</Container>
         </div>
     );
 }
