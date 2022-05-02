@@ -1,7 +1,7 @@
 {
     "name": "coolwords",
     "version": "0.1.0",
-    "homepage": "https://nachotoast.github.io/coolwords",
+    "homepage": "https://nachotoast.github.io/CoolWords",
     "private": true,
     "dependencies": {
         "@emotion/react": "^11.9.0",
