@@ -105,17 +105,6 @@ const Question = () => {
                     </Box>
                 </Collapse>
             )}
-            <Button
-                onClick={() => {
-                    dispatch(setQuestionNumber(allWords.length - 1));
-
-                    for (let i = 0; i < 10; i++) {
-                        dispatch(incrementCurrentScore());
-                    }
-                }}
-            >
-                skip
-            </Button>
         </Box>
     );
 };
