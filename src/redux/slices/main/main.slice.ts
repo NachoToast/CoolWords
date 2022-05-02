@@ -31,6 +31,14 @@ export const initialState: State = {
         },
         [GameModeNames.Letters]: {},
         [GameModeNames.Random]: undefined,
+        [GameModeNames.Difficulty]: {
+            random: undefined,
+            [DifficultyRating.VeryEasy]: undefined,
+            [DifficultyRating.Easy]: undefined,
+            [DifficultyRating.Medium]: undefined,
+            [DifficultyRating.Hard]: undefined,
+            [DifficultyRating.VeryHard]: undefined,
+        },
     },
 };
 
@@ -45,6 +53,10 @@ const mainSlice = createSlice({
             if (!newGameMode.noShuffle) newPool = wordShuffle(newGameMode.pool || allWords);
             if (newGameMode.additionalPoolOptions?.amount) {
                 newPool.splice(newGameMode.additionalPoolOptions.amount);
+            }
+            if (newPool.length === 0) {
+                window.alert(`${action.payload.name} has no words to choose from, sorry :P`);
+                return;
             }
 
             state.questionPool = newPool;

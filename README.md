@@ -6,8 +6,7 @@ Feel free to suggest your own words by making an [issue](https://github.com/Nach
 
 Roadmap:
 
--   [x] Word sets (A-M)
--   [ ] Word sets (N-Z)
+-   [x] Initial 141 words
 -   [ ] Gamemodes:
     -   [x] Select difficulty only
     -   [x] 'Streak' mode, stops once you get one wrong

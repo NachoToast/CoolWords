@@ -1,4 +1,4 @@
-import { difficultyColourMap } from '../../helpers/difficultyMaps';
+import { difficultyColourMap, difficultyNameMap } from '../../helpers/difficultyMaps';
 import DifficultyRating from '../../types/Difficulty';
 import { GameMode, GameModeNames } from '../../types/GameMode';
 import allWords, { wordLetterMap } from '../words';
@@ -9,65 +9,20 @@ const gameModes: Record<GameModeNames, GameMode> = {
         name: 'Streak',
         description: 'Keep going until you get a definition wrong.',
         subModes: [
-            {
-                name: 'Very Easy',
-                description: 'Very easy words only.',
-                pool: allWords.filter(({ difficulty }) => difficulty === DifficultyRating.VeryEasy),
-                nameColor: difficultyColourMap(DifficultyRating.VeryEasy),
-                saveLocation: {
-                    primary: GameModeNames.Streak,
-                    secondary: DifficultyRating.VeryEasy,
-                },
-            },
-            {
-                name: 'Easy',
-                description: 'Easy words only.',
-                pool: allWords.filter(({ difficulty }) => difficulty === DifficultyRating.Easy),
-                nameColor: difficultyColourMap(DifficultyRating.Easy),
-                saveLocation: {
-                    primary: GameModeNames.Streak,
-                    secondary: DifficultyRating.Easy,
-                },
-            },
-            {
-                name: 'Medium',
-                description: 'Medium words only.',
-                pool: allWords.filter(({ difficulty }) => difficulty === DifficultyRating.Medium),
-                nameColor: difficultyColourMap(DifficultyRating.Medium),
-                saveLocation: {
-                    primary: GameModeNames.Streak,
-                    secondary: DifficultyRating.Medium,
-                },
-            },
-            {
-                name: 'Hard',
-                description: 'Hard words only.',
-                pool: allWords.filter(({ difficulty }) => difficulty === DifficultyRating.Hard),
-                nameColor: difficultyColourMap(DifficultyRating.Hard),
-                saveLocation: {
-                    primary: GameModeNames.Streak,
-                    secondary: DifficultyRating.Hard,
-                },
-            },
-            {
-                name: 'Very hard',
-                description: 'Very hard words only.',
-                pool: allWords.filter(({ difficulty }) => difficulty === DifficultyRating.VeryHard),
-                nameColor: difficultyColourMap(DifficultyRating.VeryHard),
-                saveLocation: {
-                    primary: GameModeNames.Streak,
-                    secondary: DifficultyRating.VeryHard,
-                },
-            },
-            {
-                name: 'Random',
-                description: 'Random word difficulty.',
-                nameColor: 'purple',
-                saveLocation: {
-                    primary: GameModeNames.Streak,
-                    secondary: 'random',
-                },
-            },
+            ...new Array(5).fill(null).map((_, i) => {
+                const difficulty = i as DifficultyRating;
+                const submode: GameMode = {
+                    name: difficultyNameMap[difficulty],
+                    description: `${difficultyNameMap[difficulty]} words only`,
+                    pool: allWords.filter(({ difficulty: d }) => d === difficulty),
+                    saveLocation: {
+                        primary: GameModeNames.Difficulty,
+                        secondary: difficulty,
+                    },
+                    nameColor: difficultyColourMap(difficulty),
+                };
+                return submode;
+            }),
         ],
     },
     [GameModeNames.Letters]: {
@@ -100,6 +55,27 @@ const gameModes: Record<GameModeNames, GameMode> = {
         additionalPoolOptions: {
             amount: 10,
         },
+    },
+    [GameModeNames.Difficulty]: {
+        name: 'Difficulty',
+        description: 'Only words of a certain difficulty',
+        subModesType: GameModeNames.Difficulty,
+        subModes: [
+            ...new Array(5).fill(null).map((_, i) => {
+                const difficulty = i as DifficultyRating;
+                const submode: GameMode = {
+                    name: difficultyNameMap[difficulty],
+                    description: `${difficultyNameMap[difficulty]} words only`,
+                    pool: allWords.filter(({ difficulty: d }) => d === difficulty),
+                    saveLocation: {
+                        primary: GameModeNames.Difficulty,
+                        secondary: difficulty,
+                    },
+                    nameColor: difficultyColourMap(difficulty),
+                };
+                return submode;
+            }),
+        ],
     },
 };
 

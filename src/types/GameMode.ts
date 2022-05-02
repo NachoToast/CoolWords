@@ -4,6 +4,7 @@ export enum GameModeNames {
     Streak,
     Letters,
     Random,
+    Difficulty,
 }
 
 interface GameModeBase {

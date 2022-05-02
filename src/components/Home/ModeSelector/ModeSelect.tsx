@@ -17,7 +17,7 @@ const ModeSelect = (gameMode: GameMode & { hideDivider?: boolean }) => {
 
     const poolSize = useMemo<number>(() => {
         if (subModes !== undefined) return 0;
-        return gameMode.pool?.length || allWords.length;
+        return gameMode.pool?.length ?? allWords.length;
     }, [gameMode, subModes]);
 
     const dispatch = useDispatch();

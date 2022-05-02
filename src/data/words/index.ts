@@ -13,6 +13,15 @@ import words_j from './j';
 import words_k from './k';
 import words_l from './l';
 import words_m from './m';
+import words_n from './n';
+import words_o from './o';
+import words_p from './p';
+import words_q from './q';
+import words_r from './r';
+import words_s from './s';
+import words_t from './s';
+import words_u from './u';
+import words_v from './v';
 
 export const wordLetterMap: Record<string, Word[]> = {
     a: words_a,
@@ -28,6 +37,19 @@ export const wordLetterMap: Record<string, Word[]> = {
     k: words_k,
     l: words_l,
     m: words_m,
+    n: words_n,
+    o: words_o,
+    p: words_p,
+    q: words_q,
+    r: words_r,
+    s: words_s,
+    t: words_t,
+    u: words_u,
+    v: words_v,
+    w: [],
+    x: [],
+    y: [],
+    z: [],
 };
 
 const allWords: Word[] = Object.values(wordLetterMap).reduce((prev, next) => [...prev, ...next]);
