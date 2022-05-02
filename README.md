@@ -6,8 +6,8 @@ Feel free to suggest your own words by making an [issue](https://github.com/Nach
 
 Roadmap:
 
--   [x] Sample words (A)
--   [ ] Rest of words (B-Z)
+-   [x] Word sets (A-M)
+-   [ ] Word sets (N-Z)
 -   [ ] Gamemodes:
     -   [ ] Select difficulty only
     -   [ ] 'Streak' mode, stops once you get one wrong

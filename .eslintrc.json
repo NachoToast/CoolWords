@@ -11,6 +11,7 @@
     },
     "plugins": ["@typescript-eslint"],
     "rules": {
+        "no-unused-vars": "error",
         "linebreak-style": "off",
         "quotes": ["error", "single", { "avoidEscape": true }],
         "semi": "off",

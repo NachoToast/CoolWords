@@ -1,4 +1,5 @@
-import Word, { DifficultyRating } from '../types/Word';
+import DifficultyRating from '../../types/Difficulty';
+import Word from '../../types/Word';
 
 const words: Word[] = [
     {
@@ -40,7 +41,7 @@ const words: Word[] = [
     {
         word: 'delectable',
         difficulty: DifficultyRating.VeryEasy,
-        simpleAnswers: [['delicious'], ['attractive'], ['tasty'], ['yummy'], ['gordon', 'ramsay', 'food']],
+        simpleAnswers: [['delicious'], ['attractive'], ['tasty'], ['yummy'], ['yum'], ['gordon', 'ramsay', 'food']],
         longAnswers: ['(of food or drink) delicious.', 'extremely attractive'],
     },
     {

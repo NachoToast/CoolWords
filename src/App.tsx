@@ -2,22 +2,23 @@ import React, { useEffect } from 'react';
 import Home from './components/Home';
 import { Container } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { getInGame, loadBestScore } from './redux/slices/main';
+import { getGameMode, loadGameHistory } from './redux/slices/main';
 import Game from './components/Game';
+import './App.css';
 
 function App() {
     const dispatch = useDispatch();
-    const inGame = useSelector(getInGame);
+    const gameMode = useSelector(getGameMode);
 
     useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        dispatch(loadBestScore());
+        dispatch(loadGameHistory());
     }, [dispatch]);
 
     return (
         <div className="App">
-            <Container maxWidth="lg">{inGame ? <Game /> : <Home />}</Container>
+            <Container maxWidth="lg">{gameMode !== null ? <Game /> : <Home />}</Container>
         </div>
     );
 }

@@ -1,68 +1,93 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import allWords from '../../../data/words';
+import wordShuffle from '../../../helpers/wordShuffle';
+import DifficultyRating from '../../../types/Difficulty';
+import { GameHistory } from '../../../types/GameHistory';
+import { GameModeNames, GameModeSingle } from '../../../types/GameMode';
+import Word from '../../../types/Word';
 import { StoreState } from '../../store';
 
-interface BestScore {
-    got: number;
-    outOf: number;
-    at: number;
-}
-
 export interface State {
-    inGame: boolean;
+    gameMode: GameModeSingle | null;
+    questionPool: Word[];
     questionNumber: number;
-    bestScore: BestScore | null;
     currentScore: number;
+    gameHistory: GameHistory;
 }
 
 export const initialState: State = {
-    inGame: false,
+    gameMode: null,
+    questionPool: [],
     questionNumber: 0,
-    bestScore: null,
     currentScore: 0,
+    gameHistory: {
+        [GameModeNames.Streak]: {
+            random: undefined,
+            [DifficultyRating.VeryEasy]: undefined,
+            [DifficultyRating.Easy]: undefined,
+            [DifficultyRating.Medium]: undefined,
+            [DifficultyRating.Hard]: undefined,
+            [DifficultyRating.VeryHard]: undefined,
+        },
+        [GameModeNames.Letters]: {},
+        [GameModeNames.Random]: undefined,
+    },
 };
 
 const mainSlice = createSlice({
     name: 'main',
     initialState,
     reducers: {
-        setInGame(state, action: { payload: boolean }) {
-            state.inGame = action.payload;
+        setGameMode(state, action: { payload: GameModeSingle }) {
+            const newGameMode = action.payload;
+
+            let newPool = [...(newGameMode.pool || allWords)];
+            if (!newGameMode.noShuffle) newPool = wordShuffle(newGameMode.pool || allWords);
+            if (newGameMode.additionalPoolOptions?.amount) {
+                newPool.splice(newGameMode.additionalPoolOptions.amount);
+            }
+
+            state.questionPool = newPool;
+            state.gameMode = newGameMode;
         },
         setQuestionNumber(state, action: { payload: number }) {
             state.questionNumber = action.payload;
         },
-        setBestScore(state, action: { payload: BestScore }) {
-            state.bestScore = action.payload;
-            localStorage.setItem('words_best_score', JSON.stringify(action.payload));
-        },
         incrementCurrentScore(state) {
             state.currentScore++;
         },
-        clearCurrentScore(state) {
+        finishGame(state) {
             state.currentScore = 0;
+            state.questionNumber = 0;
+            state.gameMode = null;
+        },
+        setGameHistory(state, action: { payload: GameHistory }) {
+            state.gameHistory = action.payload;
+            localStorage.setItem('words_game_history', JSON.stringify(action.payload));
         },
     },
 });
 
-export const { setInGame, setQuestionNumber, setBestScore, incrementCurrentScore, clearCurrentScore } =
-    mainSlice.actions;
+export const { setGameMode, setQuestionNumber, incrementCurrentScore, finishGame, setGameHistory } = mainSlice.actions;
 
-export const getInGame = (state: StoreState) => state.main.inGame;
+export const getGameMode = (state: StoreState) => state.main.gameMode;
 
 export const getQuestionNumber = (state: StoreState) => state.main.questionNumber;
 
-export const getBestScore = (state: StoreState) => state.main.bestScore;
-
 export const getCurrentScore = (state: StoreState) => state.main.currentScore;
 
-export const loadBestScore = createAsyncThunk('main/loadBestScore', () => {
+export const getQuestionPool = (state: StoreState) => state.main.questionPool;
+
+export const getGameHistory = (state: StoreState) => state.main.gameHistory;
+
+export const loadGameHistory = createAsyncThunk('main/loadGameHistory', (_, { dispatch }) => {
     try {
-        const storedBest = localStorage.getItem('words_best_score');
-        if (storedBest) {
-            setBestScore(JSON.parse(storedBest));
+        const item = localStorage.getItem('words_game_history');
+        if (item) {
+            dispatch(setGameHistory(JSON.parse(item)));
         }
     } catch (error) {
-        //
+        localStorage.removeItem('words_game_history');
     }
 });
 

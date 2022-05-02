@@ -1,21 +1,21 @@
 import { LinearProgress, Stack, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import allWords from '../../data';
-import { getCurrentScore, getQuestionNumber } from '../../redux/slices/main';
+import { getCurrentScore, getQuestionNumber, getQuestionPool } from '../../redux/slices/main';
 import DoneScreen from '../DoneScreen';
 import Question from '../Question';
 
 const Game = () => {
     const questionNumber = useSelector(getQuestionNumber);
     const currentScore = useSelector(getCurrentScore);
+    const questionPool = useSelector(getQuestionPool);
 
     const percentDone = useMemo<number>(
-        () => Math.floor((100 * (questionNumber + 1)) / allWords.length),
-        [questionNumber],
+        () => Math.floor((100 * (questionNumber + 1)) / questionPool.length),
+        [questionPool.length, questionNumber],
     );
 
-    if (questionNumber >= allWords.length) {
+    if (questionNumber >= questionPool.length) {
         return <DoneScreen />;
     }
 
@@ -28,7 +28,7 @@ const Game = () => {
                         {currentScore} Correct Answer{currentScore !== 1 ? 's' : ''}
                     </Typography>
                     <Typography color="gray" textAlign="right" sx={{ flexGrow: 1 }}>
-                        {questionNumber + 1} of {allWords.length}
+                        {questionNumber + 1} of {questionPool.length}
                     </Typography>
                 </Stack>
             </Stack>

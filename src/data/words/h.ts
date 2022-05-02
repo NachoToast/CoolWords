@@ -1,4 +1,5 @@
-import Word, { DifficultyRating } from '../types/Word';
+import DifficultyRating from '../../types/Difficulty';
+import Word from '../../types/Word';
 
 const words: Word[] = [
     {

@@ -1,17 +1,25 @@
 import { Box, Button, Collapse, Stack, TextField, Typography } from '@mui/material';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import allWords from '../../data';
 import { difficultyColourMap, difficultyNameMap } from '../../helpers/difficultyMaps';
 import markAnswer from '../../helpers/markAnswer';
-import { getQuestionNumber, incrementCurrentScore, setQuestionNumber } from '../../redux/slices/main';
+import {
+    getGameMode,
+    getQuestionNumber,
+    getQuestionPool,
+    incrementCurrentScore,
+    setQuestionNumber,
+} from '../../redux/slices/main';
+import { GameModeNames } from '../../types/GameMode';
 import Word from '../../types/Word';
 
 const Question = () => {
     const dispatch = useDispatch();
     const questionNumber = useSelector(getQuestionNumber);
+    const questionPool = useSelector(getQuestionPool);
+    const gameMode = useSelector(getGameMode);
 
-    const word = useMemo<Word>(() => allWords[questionNumber], [questionNumber]);
+    const word = useMemo<Word>(() => questionPool[questionNumber], [questionNumber, questionPool]);
 
     const difficultyColor = useMemo<string>(() => difficultyColourMap(word.difficulty), [word.difficulty]);
     const difficultyName = useMemo<string>(() => difficultyNameMap[word.difficulty], [word.difficulty]);
@@ -37,12 +45,16 @@ const Question = () => {
     const inputRef = useRef<HTMLInputElement>();
 
     const handleNext = useCallback(() => {
+        if (gameMode?.saveLocation.primary === GameModeNames.Streak && !isRight) {
+            dispatch(setQuestionNumber(questionPool.length));
+            return;
+        }
         setHasSubmitted(false);
         dispatch(setQuestionNumber(questionNumber + 1));
         setCurrentAnswer('');
         setIsRight(false);
         inputRef.current?.focus();
-    }, [dispatch, questionNumber]);
+    }, [dispatch, gameMode?.saveLocation.primary, isRight, questionNumber, questionPool.length]);
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -67,7 +79,6 @@ const Question = () => {
                 </div>
             </Stack>
             <TextField
-                id="pogpogopgu"
                 inputRef={inputRef}
                 sx={{ mt: 1 }}
                 multiline

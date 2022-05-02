@@ -1,4 +1,4 @@
-import { DifficultyRating } from '../types/Word';
+import DifficultyRating from '../types/Difficulty';
 import ColourGradient, { std_green, std_red, std_yellow } from './colorGradient';
 
 export const difficultyNameMap: Record<DifficultyRating, string> = {

@@ -1,4 +1,5 @@
-import Word, { DifficultyRating } from '../types/Word';
+import DifficultyRating from '../../types/Difficulty';
+import Word from '../../types/Word';
 
 const words: Word[] = [
     {
@@ -16,7 +17,15 @@ const words: Word[] = [
     {
         word: 'emanated',
         difficulty: DifficultyRating.VeryEasy,
-        simpleAnswers: [['give', 'out'], ['originate', 'from'], ['produced', 'by'], ['emerge'], ['flow'], ['disperse']],
+        simpleAnswers: [
+            ['give', 'out'],
+            ['originate', 'from'],
+            ['produced', 'by'],
+            ['emerge'],
+            ['flow'],
+            ['disperse'],
+            ['spread', 'out'],
+        ],
         longAnswers: ['(of a feeling, quality, or sensation) issue or spread out from (a source).'],
     },
     {
@@ -57,7 +66,7 @@ const words: Word[] = [
     {
         word: 'espoused',
         difficulty: DifficultyRating.VeryEasy,
-        simpleAnswers: [['marry'], ['adopt'], ['support']],
+        simpleAnswers: [['marry'], ['adopt'], ['support'], ['married']],
         longAnswers: ['adopt or support (a cause, belief, or way of life).', 'marry'],
     },
     {
