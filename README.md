@@ -8,7 +8,7 @@ Roadmap:
 
 -   [x] Sample words (A)
 -   [ ] Rest of words (B-Z)
--   Gamemodes:
+-   [ ] Gamemodes:
     -   [ ] Select difficulty only
     -   [ ] 'Streak' mode, stops once you get one wrong
     -   [ ] Timed mode, auto-fails if you take too long
