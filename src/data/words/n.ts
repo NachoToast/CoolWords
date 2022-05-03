@@ -3,7 +3,7 @@ import Word from '../../types/Word';
 
 const words: Word[] = [
     {
-        word: 'neophyte',
+        word: 'neophyte', 'nachotoast',
         difficulty: DifficultyRating.Medium,
         simpleAnswers: [
             ['person', 'new', 'subject'],
